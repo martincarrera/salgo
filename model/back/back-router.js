@@ -1,4 +1,4 @@
-const controller = require('./salida-controller');
+const controller = require('./back-controller');
 const Router = require('express').Router;
 
 const router = new Router();
