@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const outSchema = new Schema({
+
   createdBy: {
     team: {
       id: String,
@@ -28,8 +29,9 @@ const outSchema = new Schema({
     default: true,
   },
 
-  items: [{
-    type: String,
+  orders: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order',
   }],
 
 });
