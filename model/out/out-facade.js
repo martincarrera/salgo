@@ -4,13 +4,22 @@ const outHelper = require('./out-helper');
 
 class OutModel extends Model {
 
-  createOut(input) { // eslint-disable-line class-methods-use-this
+  createOut(input) {
     const out = outHelper.map(input);
     const text = out.createdBy.user.name;
     return Promise.resolve(this.Schema(out).save()).then(() => ({
       response_type: 'in_channel',
       text: `:speaking_head_in_silhouette: ${text} is going out! :runner: \nLet them know what you want with \`/order [item]\`.`,
     }));
+  }
+
+  findOnePopulated(query) {
+    return this.Schema
+    .findOne(query)
+    .populate({
+      path: 'orders',
+    })
+    .exec();
   }
 
 }

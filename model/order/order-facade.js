@@ -6,7 +6,7 @@ const outFacade = require('../out/out-facade');
 
 class OrderModel extends Model {
 
-  createOrder(input) { // eslint-disable-line class-methods-use-this
+  createOrder(input) {
     const order = orderHelper.map(input);
     const text = order.text.charAt(0).toUpperCase() + order.text.slice(1);
     const outPromise = outFacade.findOne({

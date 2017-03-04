@@ -5,12 +5,8 @@ class OutController extends Controller {
 
   createOut(req, res, next) {
     this.facade.createOut(req.body)
-      .then((doc) => {
-        res.status(201).json(doc);
-      })
-      .catch((err) => {
-        next(err);
-      });
+      .then(doc => res.status(201).json(doc))
+      .catch(err => next(err));
   }
 
 }

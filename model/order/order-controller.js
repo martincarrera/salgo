@@ -5,12 +5,8 @@ class OrderController extends Controller {
 
   createOrder(req, res, next) {
     this.facade.createOrder(req.body)
-      .then((doc) => {
-        res.status(201).json(doc);
-      })
-      .catch((err) => {
-        next(err);
-      });
+      .then(doc => res.status(201).json(doc))
+      .catch(err => next(err));
   }
 
 }
