@@ -6,10 +6,10 @@ class OutModel extends Model {
 
   createOut(input) { // eslint-disable-line class-methods-use-this
     const out = outHelper.map(input);
-    return Promise.resolve(this.Schema(out).save()).then({
+    return Promise.resolve(this.Schema(out).save()).then(() => ({
       response_type: 'in_channel',
       text: ':speaking_head_in_silhouette: Someone is going out! :runner: \nLet them know what you want with `/order [item]`.',
-    });
+    }));
   }
 
 }

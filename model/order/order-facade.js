@@ -8,6 +8,7 @@ class OrderModel extends Model {
 
   createOrder(input) { // eslint-disable-line class-methods-use-this
     const order = orderHelper.map(input);
+    const text = order.text.charAt(0).toUpperCase() + order.text.slice(1);
     const outPromise = outFacade.findOne({
       'createdBy.team.id': order.createdBy.team.id,
       'createdBy.channel.id': order.createdBy.channel.id,
@@ -27,7 +28,7 @@ class OrderModel extends Model {
     })
     .then(() => ({
       response_type: 'in_channel',
-      text: 'Great! Something awesome was added to the list.',
+      text: `Great! ${text} was added to the list.`,
     }));
   }
 
