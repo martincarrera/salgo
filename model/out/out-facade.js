@@ -9,7 +9,7 @@ class OutModel extends Model {
     const text = out.createdBy.user.name;
     return Promise.resolve(this.Schema(out).save()).then(() => ({
       response_type: 'in_channel',
-      text: `:speaking_head_in_silhouette: ${text} is going out! :runner: \nLet them know what you want with \`/order [item]\`.`,
+      text: `:speaking_head_in_silhouette: ${text} is going out! :runner: \nLet him/her know what you want with \`/order [item]\`.`,
     }));
   }
 
