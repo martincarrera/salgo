@@ -4,7 +4,7 @@ const outHelper = require('./out-helper');
 
 class OutModel extends Model {
 
-  createFromSlack(input) { // eslint-disable-line class-methods-use-this
+  createOut(input) { // eslint-disable-line class-methods-use-this
     const out = outHelper.map(input);
     return Promise.resolve(this.Schema(out).save()).then({
       response_type: 'in_channel',

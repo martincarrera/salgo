@@ -3,8 +3,8 @@ const outFacade = require('./out-facade');
 
 class OutController extends Controller {
 
-  createFromSlack(req, res, next) {
-    this.facade.createFromSlack(req.body)
+  createOut(req, res, next) {
+    this.facade.createOut(req.body)
       .then((doc) => {
         res.status(201).json(doc);
       })
