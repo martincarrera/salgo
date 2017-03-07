@@ -30,7 +30,10 @@ class BackModel extends Model {
       });
       text = `${text}hurry up! @${doc.createdBy.user.name} is back!`;
     })
-    .then(() => ({ text }));
+    .then(() => ({
+      response_type: 'in_channel',
+      text,
+    }));
   }
 
 }
