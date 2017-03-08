@@ -14,10 +14,18 @@ class ListModel extends Model {
       isActive: true,
     })
     .then((doc) => {
-      text = 'This is the list for the current run:';
-      doc.orders.forEach((element, index) => {
-        text = `${text} \n ${index + 1}. *${element.text}* for ${element.createdBy.user.name}`;
-      });
+      if (doc) {
+        if (doc.orders.length > 0) {
+          text = 'This is the current list:';
+          doc.orders.forEach((element, index) => {
+            text = `${text} \n ${index + 1}. *${element.text}* for ${element.createdBy.user.name}`;
+          });
+        } else {
+          text = 'The list is empty! Want to order something? Just type `/order [item]`';
+        }
+      } else {
+        text = 'There is nobody out! Are you going out? Just type `/out` to let everybody know!';
+      }
     })
     .then(() => ({ text }));
   }

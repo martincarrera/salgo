@@ -8,6 +8,7 @@ class BackModel extends Model {
   isBack(input) { // eslint-disable-line class-methods-use-this
     const list = backHelper.map(input);
     let text = '';
+    let responseType = 'in_channel';
     const getOutPromise = outFacade.findOnePopulated({
       'createdBy.team.id': list.createdBy.team.id,
       'createdBy.channel.id': list.createdBy.channel.id,
@@ -15,23 +16,34 @@ class BackModel extends Model {
     });
     const updateOutPromise = getOutPromise
     .then((out) => {
-      const updatedOut = out;
-      updatedOut.isActive = false;
-      return outFacade.update({ _id: out.id }, updatedOut);
+      if (out) {
+        const updatedOut = out;
+        updatedOut.isActive = false;
+        return outFacade.update({ _id: out.id }, updatedOut);
+      }
+      return Promise.resolve();
     });
 
     return Promise.all([getOutPromise, updateOutPromise])
     .then(([doc]) => {
-      text = 'Hey!';
-      const usersToNotify = Array.from(
-        new Set(doc.orders.map(element => element.createdBy.user.name)));
-      usersToNotify.forEach((user) => {
-        text = `${text} @${user}, `;
-      });
-      text = `${text}hurry up! @${doc.createdBy.user.name} is back!`;
+      if (doc) {
+        if (doc.orders.length > 0) {
+          text = 'Hey!';
+          const usersToNotify = Array.from(
+            new Set(doc.orders.map(element => element.createdBy.user.name)));
+          usersToNotify.forEach((user) => {
+            text = `${text} @${user}, `;
+          });
+          text = `${text}hurry up!`;
+        }
+        text = `${text} @${doc.createdBy.user.name} is back!`;
+      } else {
+        text = 'Hey! Nobody was out! Are you going out? Just type `/out` to let everybody know!';
+        responseType = 'ephemeral';
+      }
     })
     .then(() => ({
-      response_type: 'in_channel',
+      response_type: responseType,
       text,
     }));
   }
