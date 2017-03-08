@@ -9,7 +9,7 @@ class OrderModel extends Model {
   createOrder(input) {
     const order = orderHelper.map(input);
     let text = order.text.charAt(0).toUpperCase() + order.text.slice(1);
-    let responseType = 'in_channel';
+    const responseType = 'ephemeral';
     const outPromise = outFacade.findOne({
       'createdBy.team.id': order.createdBy.team.id,
       'createdBy.channel.id': order.createdBy.channel.id,
@@ -29,7 +29,6 @@ class OrderModel extends Model {
         text = `Great! ${text} was added to the list.`;
         return outFacade.update({ _id: out.id }, out);
       }
-      responseType = 'ephemeral';
       text = 'Ups! Nobody is out! Are you going out? Just type `/out` to let everybody know!';
       return Promise.resolve();
     })
