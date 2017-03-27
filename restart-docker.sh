@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Received a git commit, restarting docker"
+echo "Restarting docker..."
 cd "$(dirname "$0")"
 docker-compose down
 docker-compose build
