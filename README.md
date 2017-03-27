@@ -1,30 +1,30 @@
-# salgo
+# [Salgo](https://salgo.xyz)
 
 Slackbot to let your _officemates_ know that you are going out to buy something, list their orders and let them know when you are back.
 
-## dependencies
+## Dependencies
 
-node 6.3.x or later and mongodb
+Node 6.3.x or later and mongodb
 
-## developing
+## Developing
 
-run mongod on a separated terminal instance:
+Run mongod on a separated terminal instance:
 
 ```
 mongod
 ```
 
-run the app:
+Run the app:
 
 ```bash
 npm run dev
 ```
 
-the app runs on `localhost:8080`
+The app runs on `localhost:8080`
 
-## production
+## Production
 
-_you'll likely be consuming mongodb as a service, so make sure you set the env var to connect to it._
+_You'll likely be consuming mongodb as a service, so make sure you set the env var to connect to it._
 
 ```bash
 npm start
