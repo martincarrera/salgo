@@ -9,7 +9,7 @@ const list = require('./model/list/list-router');
 const tutorial = require('./model/tutorial/tutorial-router');
 
 router.route('/').get((req, res) => {
-  res.json({ message: 'Welcome to salgo main site!' });
+  res.json({ message: 'Welcome to salgo home page!' });
 });
 
 router.use('/order', order);
