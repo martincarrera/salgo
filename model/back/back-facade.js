@@ -37,6 +37,12 @@ class BackModel extends Model {
           text = `${text}hurry up!`;
         }
         text = `${text} @${doc.createdBy.user.name} is back!`;
+        if (doc.orders.length > 0) {
+          text = `${text} The final list was:`;
+          doc.orders.forEach((element, index) => {
+            text = `${text} \n ${index + 1}. *${element.text}* for ${element.createdBy.user.name}`;
+          });
+        }
       } else {
         text = 'Hey! Nobody was out! Are you going out? Just type `/out` to let everybody know!';
         responseType = 'ephemeral';
