@@ -1,6 +1,15 @@
 const Model = require('../../lib/facade');
-const tutorialSchema = require('./tutorial-schema');
 
-class TutorialModel extends Model {}
+class TutorialModel extends Model {
 
-module.exports = new TutorialModel(tutorialSchema);
+  showTutorial(input) { // eslint-disable-line
+    const text = 'Insert tutorial here';
+    return Promise.resolve()
+      .then(() => ({
+        text,
+      }));
+  }
+
+}
+
+module.exports = new TutorialModel();
