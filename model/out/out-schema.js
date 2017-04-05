@@ -21,6 +21,7 @@ const outSchema = new Schema({
 
   createdAt: {
     type: Date,
+    expires: 604800,
     default: Date.now,
   },
 
