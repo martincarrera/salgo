@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "deploy": "now -e MONGO_DB_URI=@salgo_db & now alias"
   },
   "engines": {
     "node": ">=6"
