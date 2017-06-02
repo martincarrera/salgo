@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const outSchema = new Schema({
-
   createdBy: {
     team: {
       id: String,
@@ -30,12 +29,12 @@ const outSchema = new Schema({
     default: true,
   },
 
-  orders: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Order',
-  }],
-
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Order',
+    },
+  ],
 });
-
 
 module.exports = mongoose.model('Out', outSchema);
