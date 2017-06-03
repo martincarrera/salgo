@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "eslint": "eslint lib/ model/ *.js",
+    "precommit": "npm run eslint",
+    "deploy": "now -e MONGO_DB_URI=@salgo_db"
   },
   "engines": {
     "node": ">=6"
@@ -25,6 +28,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.7.1",
+    "husky": "^0.13.4",
     "nodemon": "^1.11.0"
   }
 }

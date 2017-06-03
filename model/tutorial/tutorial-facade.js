@@ -1,6 +1,14 @@
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["showTutorial"] }] */
+
 const Model = require('../../lib/facade');
-const tutorialSchema = require('./tutorial-schema');
 
-class TutorialModel extends Model {}
+class TutorialModel extends Model {
+  showTutorial() {
+    const text = 'Insert tutorial here';
+    return Promise.resolve().then(() => ({
+      text,
+    }));
+  }
+}
 
-module.exports = new TutorialModel(tutorialSchema);
+module.exports = new TutorialModel();

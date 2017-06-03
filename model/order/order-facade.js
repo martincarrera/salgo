@@ -5,7 +5,6 @@ const orderHelper = require('./order-helper');
 const outFacade = require('../out/out-facade');
 
 class OrderModel extends Model {
-
   createOrder(input) {
     const order = orderHelper.map(input);
     let text = order.text.charAt(0).toUpperCase() + order.text.slice(1);
@@ -23,21 +22,20 @@ class OrderModel extends Model {
     });
 
     return Promise.all([outPromise, orderPromise])
-    .then(([out, o]) => {
-      if (out) {
-        out.orders.push(o);
-        text = `Great! ${text} was added to the list.`;
-        return outFacade.update({ _id: out.id }, out);
-      }
-      text = 'Ups! Nobody is out! Are you going out? Just type `/out` to let everybody know!';
-      return Promise.resolve();
-    })
-    .then(() => ({
-      response_type: responseType,
-      text,
-    }));
+      .then(([out, o]) => {
+        if (out) {
+          out.orders.push(o);
+          text = `Great! ${text} was added to the list.`;
+          return outFacade.update({ _id: out.id }, out);
+        }
+        text = 'Ups! Nobody is out! Are you going out? Just type `/out` to let everybody know!';
+        return Promise.resolve();
+      })
+      .then(() => ({
+        response_type: responseType,
+        text,
+      }));
   }
-
 }
 
 module.exports = new OrderModel(orderSchema);
