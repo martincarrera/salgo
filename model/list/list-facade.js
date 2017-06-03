@@ -1,3 +1,5 @@
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["showList"] }] */
+
 const Model = require('../../lib/facade');
 const listHelper = require('./list-helper');
 

@@ -1,3 +1,5 @@
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["isBack"] }] */
+
 const Model = require('../../lib/facade');
 const backHelper = require('./back-helper');
 
@@ -27,6 +29,7 @@ class BackModel extends Model {
         if (doc) {
           if (doc.orders.length > 0) {
             text = 'Hey! ';
+            // Notify users
             const usersToNotify = Array.from(
               new Set(doc.orders.map(element => element.createdBy.user.name)),
             );
@@ -35,6 +38,7 @@ class BackModel extends Model {
             });
             text = `${text}hurry up! @${doc.createdBy.user.name} is back!`;
 
+            // Show final list
             text = `${text} The final list was:`;
             doc.orders.forEach((element, index) => {
               text = `${text} \n ${index + 1}. *${element.text}* for ${element.createdBy.user.name}`;
